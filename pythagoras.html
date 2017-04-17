@@ -1,0 +1,55 @@
+﻿<!--By Dat HA-->
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pythagoras' Theorem Calculator</title>
+</head>
+<body table bgcolor="#AEFFFD" width="100%">
+    <font face="calibri" size=3" color="#000000">
+        <h2>Pythagoras' Theorem Calculator</h2>
+        <h4>Put 0 for the missing value</h4>
+
+        <p>
+            A :
+            <input type="number" id="a" />
+        </p>
+
+        <p>
+            B :
+            <input type="number" id="b" />
+        </p>
+
+        <p>
+            C :
+            <input type="number" id="c" />
+        </p>
+
+        <input type="button" value="Calculate" onclick="calculate()" />
+
+        <script type="text/javascript">
+            function calculate() {
+                a = parseFloat(document.getElementById('a').value)
+                b = parseFloat(document.getElementById('b').value)
+                c = parseFloat(document.getElementById('c').value)
+
+                if (a == 0) {
+                    var temp = Math.sqrt(Math.pow(c, 2) - Math.pow(b, 2))
+                    alert("Missing value is A : " + temp)
+                }
+
+                if (b == 0) {
+                    var temp = Math.sqrt(Math.pow(c, 2) - Math.pow(a, 2))
+                    alert("Missing value is B : " + temp)
+                }
+
+                if (c == 0) {
+                    var temp = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+                    alert("Missing value is C : " + temp)
+                }
+            }
+        </script>
+    </font>
+</body>
+</html>
