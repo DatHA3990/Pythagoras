@@ -4,66 +4,95 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Pythagoras' Theorem Calculator</title>
+    <title>Triangles!!</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://vignette4.wikia.nocookie.net/villains/images/7/78/Illuminati-Logo.png/revision/latest?cb=20150529234113" />
 </head>
-<body table bgcolor="#AEFFFD" width="100%">
+<body table bgcolor="#FFF9A5" width="100%" align="middle">
     <font face="calibri" size=3" color="#000000">
 
-        <h1>Pythagoras' Theorem Calculator</h1>
-        <h3>Put 0 for the missing value</h3>
-        <h4>a<sup>2</sup> + b<sup>2 </sup> = c <sup>2</sup></h4>
+        <br />
 
-        <p>
-            A :
-            <input type="number" id="a" />
-        </p>
+        <h1>Right Triangle Calculator</h1>
+        <h3>By Dat HA</h3>
 
-        <p>
-            B :
-            <input type="number" id="b" />
-        </p>
+        <p>A or Opposite:</p>
+        <input type="number" id="a" />
 
-        <p>
-            C :
-            <input type="number" id="c" />
-        </p>
+        <p>B or Adjacent</p>
+        <input type="number" id="b" />
+
+        <p>C or Hypotenuse</p>
+        <input type="number" id="c" />
+
+        <p>Angle</p>
+        <input type="number" id="angle" />
+
+        <br />
+        <br />
 
         <input type="button" value="Calculate" onclick="Calculate()" />
         <input type="reset" value="Reset" onclick="ClearFields()" />
         <script type="text/javascript">
-            function Calculate() {
-                a = document.getElementById('a').value
-                b = document.getElementById('b').value
-                c = document.getElementById('c').value
 
-                if (a == "") {
-                    var temp = Math.sqrt(Math.pow(parseFloat(c), 2) - Math.pow(parseFloat(b), 2))
-                    document.getElementById('a').value = temp
-                }
+            function ToDegrees(angle) {
+                return angle * (180 / Math.PI);
+            }
 
-                if (b == "") {
-                    var temp = Math.sqrt(Math.pow(parseFloat(c), 2) - Math.pow(parseFloat(a), 2))
-                    document.getElementById('b').value = temp
-                }
-
-                if (c == "") {
-                    var temp = Math.sqrt(Math.pow(parseFloat(a), 2) + Math.pow(parseFloat(b), 2))
-                    document.getElementById('c').value = temp
-                }
-
+            function ToRadians(angle) {
+                return angle * (Math.PI / 180);
             }
 
             function ClearFields() {
                 document.getElementById('a').value = ""
                 document.getElementById('b').value = ""
                 document.getElementById('c').value = ""
+                document.getElementById("angle").value = ""
+            }
+
+            function Calculate() {
+                a = document.getElementById('a').value
+                b = document.getElementById('b').value
+                c = document.getElementById('c').value
+                angle = document.getElementById("angle").value
+
+                if (a == "" && angle == "") {
+                    document.getElementById('a').value = Math.sqrt(Math.pow(parseFloat(c), 2) - Math.pow(parseFloat(b), 2))
+                    document.getElementById('angle').value = ToDegrees(Math.asin(a / b))
+                }
+
+                else if (b == "" && angle == "") {
+                    document.getElementById('b').value = Math.sqrt(Math.pow(parseFloat(c), 2) - Math.pow(parseFloat(a), 2))
+                    document.getElementById('angle').value = ToDegrees(Math.acos(a / c))
+                }
+
+                else if (c == "" && angle == "") {
+                    document.getElementById('c').value = Math.sqrt(Math.pow(parseFloat(a), 2) + Math.pow(parseFloat(b), 2))
+                    document.getElementById('angle').value = ToDegrees(Math.atan2(a, b))
+                }
+
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                else if (a == "" && b == "") {
+                    document.getElementById('a').value = c * Math.sin(ToRadians(angle))
+                    document.getElementById('b').value = c * Math.cos(ToRadians(angle))
+                }
+
+                else if (a == "" && c == "") {
+                    document.getElementById('a').value = a * Math.tan(ToRadians(angle))
+                    document.getElementById('c').value = a / Math.cos(ToRadians(angle))
+                }
+
+                else if (b == "" && c == "") {
+                    document.getElementById('b').value = b / Math.tan(ToRadians(angle))
+                    document.getElementById('c').value = b / Math.sin(ToRadians(angle))
+                }
+
+                else {
+                    ClearFields()
+                }
+
             }
         </script>
-
-        <br />
-        <br />
-
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/260px-Pythagorean.svg.png" alt="t4k_logo" \ />
     </font>
 </body>
 </html>
